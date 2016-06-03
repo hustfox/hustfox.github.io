@@ -267,66 +267,6 @@
 </nav>
       <div class="body-wrap">
   
-    <article id="post-Markdown-MarkEditor" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2016/06/03/Markdown-MarkEditor/" class="article-date">
-      <time datetime="2016-06-03T08:31:30.000Z" itemprop="datePublished">2016-06-03</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/06/03/Markdown-MarkEditor/">Markdown--MarkEditor</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-        <p>##二级标题</p>
-<p>###代码<br><code>self.hits = nodeRootNode.xPath(&quot;./table/tr/td[3]/span[last()]/text()&quot;).first?.content</code></p>
-<p>###代码块<br><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">setupTitleLayout</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">let</span> title = <span class="keyword">self</span>.topicTitle &#123;</span><br><span class="line">            <span class="keyword">self</span>.topicTitleAttributedString = <span class="type">NSMutableAttributedString</span>(string: title,</span><br><span class="line">                attributes: [</span><br><span class="line">                    <span class="type">NSFontAttributeName</span>:v2Font(<span class="number">17</span>),</span><br><span class="line">                    <span class="type">NSForegroundColorAttributeName</span>:<span class="type">V2EXColor</span>.colors.v2_TopicListTitleColor,</span><br><span class="line">                ])</span><br><span class="line">            <span class="keyword">self</span>.topicTitleAttributedString?.yy_lineSpacing = <span class="number">3</span></span><br><span class="line"></span><br><span class="line">            <span class="comment">//监听颜色配置文件变化，当有变化时，改变自身颜色</span></span><br><span class="line">            <span class="keyword">self</span>.thmemChangedHandler = &#123;[<span class="keyword">weak</span> <span class="keyword">self</span>] (style) -&gt; <span class="type">Void</span> <span class="keyword">in</span></span><br><span class="line">                <span class="keyword">if</span> <span class="keyword">let</span> str = <span class="keyword">self</span>?.topicTitleAttributedString &#123;</span><br><span class="line">                    str.yy_color = <span class="type">V2EXColor</span>.colors.v2_TopicListTitleColor</span><br><span class="line">                    <span class="keyword">self</span>?.topicTitleLayout = <span class="type">YYTextLayout</span>(containerSize: <span class="type">CGSizeMake</span>(<span class="type">SCREEN_WIDTH</span>-<span class="number">24</span>, <span class="number">9999</span>), text: <span class="keyword">self</span>?.topicTitleAttributedString)</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></p>
-<p>###粗体<br><strong>好先生</strong>是孙红雷、江疏影主演的一部非常值得一看的电视剧</p>
-<p>###斜体<br><em>孙艺珍</em>是韩国美女，其主演的《白夜行》、《假如爱有天意》深入人心</p>
-<p>###链接<br><a href="https://www.gitbook.com/book/llh911001/mostly-adequate-guide-chinese/details" target="_blank" rel="external">JS函数式编程</a></p>
-<p>###图像<br><img src="https://upload.wikimedia.org/wikipedia/commons/b/b9/YoonA_at_Style_Icon_Asia_2016_04.jpg" alt="Yoona"></p>
-
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-
-      
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
     <article id="post-Markdown测试" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
@@ -354,26 +294,31 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <h2 id="二级标题"><a href="#二级标题" class="headerlink" title="二级标题"></a>二级标题</h2><h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><p><code>self.avata = favoritesRootNode.xPath(&quot;./table/tr/td[1]/a[1]/img[@class=&#39;avatar&#39;]&quot;).first?[&quot;src&quot;]</code></p>
-<h3 id="代码块"><a href="#代码块" class="headerlink" title="代码块"></a>代码块</h3><pre><code>func setupTitleLayout(){
-        if let title = self.topicTitle {
-            self.topicTitleAttributedString = NSMutableAttributedString(string: title,
-                attributes: [
-                    NSFontAttributeName:v2Font(17),
-                    NSForegroundColorAttributeName:V2EXColor.colors.v2_TopicListTitleColor,
-                ])
-            self.topicTitleAttributedString?.yy_lineSpacing = 3
+        <p>\<excerpt in="" index="" |="" 首页摘要\=""> </excerpt></p>
+<ul>
+<li><p>\&lt;!– more –><br>\<the rest="" of="" contents="" |="" 余下全文\=""></the></p>
+<h2 id="二级标题"><a href="#二级标题" class="headerlink" title="二级标题"></a>二级标题</h2><h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><p><code>self.avata = favoritesRootNode.xPath(&quot;./table/tr/td[1]/a[1]/img[@class=&#39;avatar&#39;]&quot;).first?[&quot;src&quot;]</code></p>
+<h3 id="代码块"><a href="#代码块" class="headerlink" title="代码块"></a>代码块</h3><p>  func setupTitleLayout(){</p>
+<pre><code>    if let title = self.topicTitle {
+        self.topicTitleAttributedString = NSMutableAttributedString(string: title,
+            attributes: [
+                NSFontAttributeName:v2Font(17),
+                NSForegroundColorAttributeName:V2EXColor.colors.v2_TopicListTitleColor,
+            ])
+        self.topicTitleAttributedString?.yy_lineSpacing = 3
 
-            //监听颜色配置文件变化，当有变化时，改变自身颜色
-            self.thmemChangedHandler = {[weak self] (style) -&gt; Void in
-                if let str = self?.topicTitleAttributedString {
-                    str.yy_color = V2EXColor.colors.v2_TopicListTitleColor
-                    self?.topicTitleLayout = YYTextLayout(containerSize: CGSizeMake(SCREEN_WIDTH-24, 9999), text: self?.topicTitleAttributedString)
-                }
+        //监听颜色配置文件变化，当有变化时，改变自身颜色
+        self.thmemChangedHandler = {[weak self] (style) -&gt; Void in
+            if let str = self?.topicTitleAttributedString {
+                str.yy_color = V2EXColor.colors.v2_TopicListTitleColor
+                self?.topicTitleLayout = YYTextLayout(containerSize: CGSizeMake(SCREEN_WIDTH-24, 9999), text: self?.topicTitleAttributedString)
             }
         }
     }
-</code></pre><h3 id="粗体"><a href="#粗体" class="headerlink" title="粗体"></a>粗体</h3><p><strong>好先生</strong>是孙红雷、江疏影主演的一部非常值得一看的电视剧</p>
+}
+</code></pre></li>
+</ul>
+<h3 id="粗体"><a href="#粗体" class="headerlink" title="粗体"></a>粗体</h3><p><strong>好先生</strong>是孙红雷、江疏影主演的一部非常值得一看的电视剧</p>
 <h3 id="斜体"><a href="#斜体" class="headerlink" title="斜体"></a>斜体</h3><p><em>孙艺珍</em>是韩国美女，其主演的《白夜行》、《假如爱有天意》深入人心</p>
 <h3 id="链接"><a href="#链接" class="headerlink" title="链接"></a>链接</h3><p><a href="https://www.gitbook.com/book/llh911001/mostly-adequate-guide-chinese/details" target="_blank" rel="external">https://www.gitbook.com/book/llh911001/mostly-adequate-guide-chinese/details </a></p>
 <h3 id="图像"><a href="#图像" class="headerlink" title="图像"></a>图像</h3><p><img src="https://upload.wikimedia.org/wikipedia/commons/b/b9/YoonA_at_Style_Icon_Asia_2016_04.jpg" alt=""></p>

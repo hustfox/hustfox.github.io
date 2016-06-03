@@ -15,23 +15,32 @@
 
 
 
-<meta name="description" content="二级标题代码self.avata = favoritesRootNode.xPath(&amp;quot;./table/tr/td[1]/a[1]/img[@class=&amp;#39;avatar&amp;#39;]&amp;quot;).first?[&amp;quot;src&amp;quot;]
-代码块func setupTitleLayout(){
-        if let title = self.topicTitle {">
+<meta name="description" content="\ 
+
+\&amp;lt;!– more –&amp;gt;\
+二级标题代码self.avata = favoritesRootNode.xPath(&amp;quot;./table/tr/td[1]/a[1]/img[@class=&amp;#39;avatar&amp;#39;]&amp;quot;).first?[&amp;quot;src&amp;quot;]
+代码块  func setupTitleLayout(){
+    if let title =">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Markdown测试">
 <meta property="og:url" content="http://yoursite.com/2016/06/03/Markdown测试/index.html">
 <meta property="og:site_name" content="风的呢喃">
-<meta property="og:description" content="二级标题代码self.avata = favoritesRootNode.xPath(&amp;quot;./table/tr/td[1]/a[1]/img[@class=&amp;#39;avatar&amp;#39;]&amp;quot;).first?[&amp;quot;src&amp;quot;]
-代码块func setupTitleLayout(){
-        if let title = self.topicTitle {">
+<meta property="og:description" content="\ 
+
+\&amp;lt;!– more –&amp;gt;\
+二级标题代码self.avata = favoritesRootNode.xPath(&amp;quot;./table/tr/td[1]/a[1]/img[@class=&amp;#39;avatar&amp;#39;]&amp;quot;).first?[&amp;quot;src&amp;quot;]
+代码块  func setupTitleLayout(){
+    if let title =">
 <meta property="og:image" content="https://upload.wikimedia.org/wikipedia/commons/b/b9/YoonA_at_Style_Icon_Asia_2016_04.jpg">
-<meta property="og:updated_time" content="2016-06-03T08:29:20.000Z">
+<meta property="og:updated_time" content="2016-06-03T08:50:27.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Markdown测试">
-<meta name="twitter:description" content="二级标题代码self.avata = favoritesRootNode.xPath(&amp;quot;./table/tr/td[1]/a[1]/img[@class=&amp;#39;avatar&amp;#39;]&amp;quot;).first?[&amp;quot;src&amp;quot;]
-代码块func setupTitleLayout(){
-        if let title = self.topicTitle {">
+<meta name="twitter:description" content="\ 
+
+\&amp;lt;!– more –&amp;gt;\
+二级标题代码self.avata = favoritesRootNode.xPath(&amp;quot;./table/tr/td[1]/a[1]/img[@class=&amp;#39;avatar&amp;#39;]&amp;quot;).first?[&amp;quot;src&amp;quot;]
+代码块  func setupTitleLayout(){
+    if let title =">
 <meta name="twitter:image" content="https://upload.wikimedia.org/wikipedia/commons/b/b9/YoonA_at_Style_Icon_Asia_2016_04.jpg">
 
 <link rel="apple-touch-icon" href= "/apple-touch-icon.png">
@@ -303,26 +312,31 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <h2 id="二级标题"><a href="#二级标题" class="headerlink" title="二级标题"></a>二级标题</h2><h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><p><code>self.avata = favoritesRootNode.xPath(&quot;./table/tr/td[1]/a[1]/img[@class=&#39;avatar&#39;]&quot;).first?[&quot;src&quot;]</code></p>
-<h3 id="代码块"><a href="#代码块" class="headerlink" title="代码块"></a>代码块</h3><pre><code>func setupTitleLayout(){
-        if let title = self.topicTitle {
-            self.topicTitleAttributedString = NSMutableAttributedString(string: title,
-                attributes: [
-                    NSFontAttributeName:v2Font(17),
-                    NSForegroundColorAttributeName:V2EXColor.colors.v2_TopicListTitleColor,
-                ])
-            self.topicTitleAttributedString?.yy_lineSpacing = 3
+        <p>\<excerpt in="" index="" |="" 首页摘要\=""> </excerpt></p>
+<ul>
+<li><p>\&lt;!– more –><br>\<the rest="" of="" contents="" |="" 余下全文\=""></the></p>
+<h2 id="二级标题"><a href="#二级标题" class="headerlink" title="二级标题"></a>二级标题</h2><h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><p><code>self.avata = favoritesRootNode.xPath(&quot;./table/tr/td[1]/a[1]/img[@class=&#39;avatar&#39;]&quot;).first?[&quot;src&quot;]</code></p>
+<h3 id="代码块"><a href="#代码块" class="headerlink" title="代码块"></a>代码块</h3><p>  func setupTitleLayout(){</p>
+<pre><code>    if let title = self.topicTitle {
+        self.topicTitleAttributedString = NSMutableAttributedString(string: title,
+            attributes: [
+                NSFontAttributeName:v2Font(17),
+                NSForegroundColorAttributeName:V2EXColor.colors.v2_TopicListTitleColor,
+            ])
+        self.topicTitleAttributedString?.yy_lineSpacing = 3
 
-            //监听颜色配置文件变化，当有变化时，改变自身颜色
-            self.thmemChangedHandler = {[weak self] (style) -&gt; Void in
-                if let str = self?.topicTitleAttributedString {
-                    str.yy_color = V2EXColor.colors.v2_TopicListTitleColor
-                    self?.topicTitleLayout = YYTextLayout(containerSize: CGSizeMake(SCREEN_WIDTH-24, 9999), text: self?.topicTitleAttributedString)
-                }
+        //监听颜色配置文件变化，当有变化时，改变自身颜色
+        self.thmemChangedHandler = {[weak self] (style) -&gt; Void in
+            if let str = self?.topicTitleAttributedString {
+                str.yy_color = V2EXColor.colors.v2_TopicListTitleColor
+                self?.topicTitleLayout = YYTextLayout(containerSize: CGSizeMake(SCREEN_WIDTH-24, 9999), text: self?.topicTitleAttributedString)
             }
         }
     }
-</code></pre><h3 id="粗体"><a href="#粗体" class="headerlink" title="粗体"></a>粗体</h3><p><strong>好先生</strong>是孙红雷、江疏影主演的一部非常值得一看的电视剧</p>
+}
+</code></pre></li>
+</ul>
+<h3 id="粗体"><a href="#粗体" class="headerlink" title="粗体"></a>粗体</h3><p><strong>好先生</strong>是孙红雷、江疏影主演的一部非常值得一看的电视剧</p>
 <h3 id="斜体"><a href="#斜体" class="headerlink" title="斜体"></a>斜体</h3><p><em>孙艺珍</em>是韩国美女，其主演的《白夜行》、《假如爱有天意》深入人心</p>
 <h3 id="链接"><a href="#链接" class="headerlink" title="链接"></a>链接</h3><p><a href="https://www.gitbook.com/book/llh911001/mostly-adequate-guide-chinese/details" target="_blank" rel="external">https://www.gitbook.com/book/llh911001/mostly-adequate-guide-chinese/details </a></p>
 <h3 id="图像"><a href="#图像" class="headerlink" title="图像"></a>图像</h3><p><img src="https://upload.wikimedia.org/wikipedia/commons/b/b9/YoonA_at_Style_Icon_Asia_2016_04.jpg" alt=""></p>
@@ -337,7 +351,7 @@
         <p><span>本文标题:</span><a href="/2016/06/03/Markdown测试/">Markdown测试</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">Hustfox</a></p>
         <p><span>发布时间:</span>2016-06-03, 16:10:05</p>
-        <p><span>最后更新:</span>2016-06-03, 16:29:20</p>
+        <p><span>最后更新:</span>2016-06-03, 16:50:27</p>
         <p>
             <span>原始链接:</span><a class="post-url" href="/2016/06/03/Markdown测试/" title="Markdown测试">http://yoursite.com/2016/06/03/Markdown测试/</a>
             <span class="copy-path" data-clipboard-text="原文: http://yoursite.com/2016/06/03/Markdown测试/　　作者: Hustfox" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
@@ -351,12 +365,6 @@
 
 
     <nav id="article-nav">
-        
-            <div id="article-nav-newer" class="article-nav-title">
-                <a href="/2016/06/03/Markdown-MarkEditor/">
-                    Markdown--MarkEditor
-                </a>
-            </div>
         
         
             <div id="article-nav-older" class="article-nav-title">
@@ -449,9 +457,7 @@
 
     <div class="scroll" id="post-nav-button">
         
-            <a href="/2016/06/03/Markdown-MarkEditor/" title="上一篇: Markdown--MarkEditor">
-                <i class="fa fa-angle-left"></i>
-            </a>
+            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
         
 
         <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
@@ -463,7 +469,7 @@
         
     </div>
 
-    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2016/06/03/Markdown-MarkEditor/">Markdown--MarkEditor</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/06/03/Markdown测试/">Markdown测试</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/06/03/我的梦想/">我的梦想</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/06/03/hello-world/">Hello World</a></li></ul>
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2016/06/03/Markdown测试/">Markdown测试</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/06/03/我的梦想/">我的梦想</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/06/03/hello-world/">Hello World</a></li></ul>
 
 
 
