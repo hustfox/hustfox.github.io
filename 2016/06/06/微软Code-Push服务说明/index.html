@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html >
+<head>
+
+    <!--[if lt IE 9]>
+        <style>body {display: none; background: none !important} </style>
+        <meta http-equiv="Refresh" Content="0; url=//outdatedbrowser.com/" />
+    <![endif]-->
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="format-detection" content="telephone=no" />
+<meta name="author" content="Hustfox" />
+
+
+
+<meta name="description" content="CodePush是一种云服务，允许Cordova和React Native开发者直接部署移动应用更新到用户设备上。CodePush的行为类似中央仓库，开发者发布更新(JS、HTML、CSS、图片等资源)到CodePush服务器，应用在启动时利用提供的SDK查询更新。这样在修复Bugs或者添加小功能时就不需要重新构建二进制包以及重新发布到各app store。同时CodePush插件会保存上次更新的">
+<meta property="og:type" content="article">
+<meta property="og:title" content="微软Code Push服务说明">
+<meta property="og:url" content="http://yoursite.com/2016/06/06/微软Code-Push服务说明/index.html">
+<meta property="og:site_name" content="风的呢喃">
+<meta property="og:description" content="CodePush是一种云服务，允许Cordova和React Native开发者直接部署移动应用更新到用户设备上。CodePush的行为类似中央仓库，开发者发布更新(JS、HTML、CSS、图片等资源)到CodePush服务器，应用在启动时利用提供的SDK查询更新。这样在修复Bugs或者添加小功能时就不需要重新构建二进制包以及重新发布到各app store。同时CodePush插件会保存上次更新的">
+<meta property="og:updated_time" content="2016-06-06T06:48:18.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="微软Code Push服务说明">
+<meta name="twitter:description" content="CodePush是一种云服务，允许Cordova和React Native开发者直接部署移动应用更新到用户设备上。CodePush的行为类似中央仓库，开发者发布更新(JS、HTML、CSS、图片等资源)到CodePush服务器，应用在启动时利用提供的SDK查询更新。这样在修复Bugs或者添加小功能时就不需要重新构建二进制包以及重新发布到各app store。同时CodePush插件会保存上次更新的">
+
+<link rel="apple-touch-icon" href= "/apple-touch-icon.png">
+
+
+    <link rel="alternative" href="/atom.xml" title="风的呢喃" type="application/atom+xml">
+
+
+
+    <link rel="shortcut icon" href="/favicon.png">
+
+
+
+    <link href="//cdn.bootcss.com/animate.css/3.5.1/animate.min.css" rel="stylesheet">
+
+
+
+    <link href="//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.css" rel="stylesheet">
+
+
+
+    <script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+    <link href="//cdn.bootcss.com/pace/1.0.2/themes/blue/pace-theme-minimal.css" rel="stylesheet">
+
+
+<link rel="stylesheet" href="/css/style.css">
+
+
+
+<link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+
+
+<title>微软Code Push服务说明 | 风的呢喃</title>
+
+<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+<script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+
+<script>
+    var yiliaConfig = {
+        fancybox: true,
+        animate: true,
+        isHome: false,
+        isPost: true,
+        isArchive: false,
+        isTag: false,
+        isCategory: false,
+        open_in_new: false,
+        fancybox_js: "//cdn.bootcss.com/fancybox/2.1.5/jquery.fancybox.min.js",
+        scrollreveal: "//cdn.bootcss.com/scrollReveal.js/3.1.4/scrollreveal.min.js",
+        search: undefined
+    }
+</script>
+
+
+    <script> yiliaConfig.jquery_ui = [false]; </script>
+
+
+
+    <script> yiliaConfig.rootUrl = "\/";</script>
+
+
+
+
+
+
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <a href="/" class="profilepic">
+            <img src="/img/Sakura.png" class="animated zoomIn">
+        </a>
+        <hgroup>
+          <h1 class="header-author"><a href="/">Hustfox</a></h1>
+        </hgroup>
+
+        
+        <p class="header-subtitle">Higher,Faster,Stronger</p>
+        
+
+        
+
+
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        <div class="icon-wrap icon-link hide" data-idx="2">
+                            <div class="loopback_l"></div>
+                            <div class="loopback_r"></div>
+                        </div>
+                        
+                        
+                        <div class="icon-wrap icon-me hide" data-idx="3">
+                            <div class="user"></div>
+                            <div class="shoulder"></div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>菜单</li>
+                        <li>标签</li>
+                        
+                        <li>友情链接</li>
+                        
+                        
+                        <li>关于我</li>
+                        
+                    </ul>
+                </div>
+            </div>
+        
+
+        <div id="switch-area" class="switch-area">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a href="/">主页</a></li>
+                        
+                            <li><a href="/archives/">所有文章</a></li>
+                        
+                            <li><a href="/tags/">标签云</a></li>
+                        
+                            <li><a href="/about/">关于我</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" target="_blank" href="mailto:lw4838@gmail.com" title="Email"></a>
+                            
+                                <a class="fa GitHub" target="_blank" href="https://github.com/hustfox" title="GitHub"></a>
+                            
+                                <a class="fa RSS" target="_blank" href="/atom.xml" title="RSS"></a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        
+                    </div>
+                </section>
+                
+                
+                
+                <section class="switch-part switch-part3">
+                    <div id="js-friends">
+                    
+                      <a target="_blank" class="main-nav-link switch-friends-link" href="https://hexo.io">Hexo</a>
+                    
+                      <a target="_blank" class="main-nav-link switch-friends-link" href="https://pages.github.com/">GitHub</a>
+                    
+                      <a target="_blank" class="main-nav-link switch-friends-link" href="http://moxfive.xyz/">MOxFIVE</a>
+                    
+                    </div>
+                </section>
+                
+
+                
+                
+                <section class="switch-part switch-part4">
+                
+                    <div id="js-aboutme">专注于前端</div>
+                </section>
+                
+            </div>
+        </div>
+    </header>                
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="回到主页">Hustfox</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                <img src="/img/Sakura.png" class="animated zoomIn">
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="回到主页">Hustfox</a></h1>
+            </hgroup>
+            
+            <p class="header-subtitle">Higher,Faster,Stronger</p>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/">主页</a></li>
+                
+                    <li><a href="/archives/">所有文章</a></li>
+                
+                    <li><a href="/tags/">标签云</a></li>
+                
+                    <li><a href="/about/">关于我</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fa Email" target="_blank" href="mailto:lw4838@gmail.com" title="Email"></a>
+                            
+                                <a class="fa GitHub" target="_blank" href="https://github.com/hustfox" title="GitHub"></a>
+                            
+                                <a class="fa RSS" target="_blank" href="/atom.xml" title="RSS"></a>
+                            
+                        </ul>
+            </nav>
+        </header>                
+    </div>
+    <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
+</nav>
+      <div class="body-wrap"><article id="post-微软Code-Push服务说明" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/06/06/微软Code-Push服务说明/" class="article-date">
+      <time datetime="2016-06-06T06:30:55.000Z" itemprop="datePublished">2016-06-06</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      微软Code Push服务说明
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+
+        
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <p>CodePush是一种云服务，允许Cordova和React Native开发者直接部署移动应用更新到用户设备上。CodePush的行为类似中央仓库，开发者发布更新(JS、HTML、CSS、图片等资源)到CodePush服务器，应用在启动时利用提供的SDK查询更新。这样在修复Bugs或者添加小功能时就不需要重新构建二进制包以及重新发布到各app store。同时CodePush插件会保存上次更新的一份拷贝，这样当用户更新异常后能自动回滚，从而保证用户不会因更新失败而无法使用应用。<br><a id="more"></a></p>
+<h3 id="支持平台"><a href="#支持平台" class="headerlink" title="支持平台"></a>支持平台</h3><ul>
+<li>Android(cordova-android 4.0.0+) - Including CrossWalk!</li>
+<li>iOS (cordova-ios 3.9.0+) .如果需要搭配使用[cordova-plugin-wkwebview-engine]，那么需要安装v1.5.1-beta+，该版本同时支持WKWebView和WebView。<h3 id="入门教程"><a href="#入门教程" class="headerlink" title="入门教程"></a>入门教程</h3></li>
+</ul>
+<ol>
+<li>安装CodePush CLI<br> <code>npm install -g code-push-cli</code></li>
+<li>创建CodePush账号<br> 运行<code>code-push register</code>创建Github或微软账号。如果已有账号，直接:<code>code-push register</code>登陆账号。登陆账号时网页会提供<em>Access Key</em>,将该Key输入到命令行的指定位置即可。</li>
+<li>注册app<br> <code>code-push app add &lt;appName&gt;</code>。<em>appName</em>可以不与应用名字一致。</li>
+<li>安装CodePush插件<br> <code>cordova plugin add cordova-plugin-code-push@latest</code></li>
+<li><p>添加Deployment Keys<br> 在第三步注册app时，注册成功后会提供Production Key和Staging Key。前者用于生产，后者用于测试。如果遗忘了可以使用命令<code>code-push deployment  ls &lt;appName&gt; -k</code>获取这些Keys，确保在config.xml文件中添加正确的Key：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;platform name=&quot;android&quot;&gt;</span><br><span class="line">    &lt;preference name=&quot;CodePushDeploymentKey&quot; value=&quot;YOUR-ANDROID-DEPLOYMENT-KEY&quot; /&gt;</span><br><span class="line">&lt;/platform&gt;</span><br><span class="line">&lt;platform name=&quot;ios&quot;&gt;</span><br><span class="line">    &lt;preference name=&quot;CodePushDeploymentKey&quot; value=&quot;YOUR-IOS-DEPLOYMENT-KEY&quot; /&gt;</span><br><span class="line">&lt;/platform&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>如果config.xml中没有使用<code>&lt;access origin=&quot;*&quot; /&gt;</code>，那么需要添加如下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;access origin=&quot;https://codepush.azurewebsites.net&quot; /&gt;</span><br><span class="line">&lt;access origin=&quot;https://codepush.blob.core.windows.net&quot; /&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>在遵从CSP的平台上，为确保能够访问CodePush服务器，需要在<em>index.html</em>中添加<strong>Content-Security-Policy</strong>的<em>meta</em>标签。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;meta http-equiv=&quot;Content-Security-Policy&quot; content=&quot;default-src https://codepush.azurewebsites.net &apos;self&apos; data: gap: https://ssl.gstatic.com &apos;unsafe-eval&apos;; style-src &apos;self&apos; &apos;unsafe-inline&apos;; media-src *&quot; /&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>确保已经安装了<em>cordova-plugin-whitelist</em>插件，否则运行如下命令：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cordova plugin add cordova-plugin-whitelist</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h3 id="插件用法"><a href="#插件用法" class="headerlink" title="插件用法"></a>插件用法</h3><ol>
+<li>在应用的<strong>deviceready</strong>事件处理函数中田间<em>sync</em>方法。<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">codePush.sync(syncCallback?, syncOptions?, downloadProgress?);</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>示例：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Download the update silently, but install it on</span></span><br><span class="line"><span class="comment">// the next resume, as long as at least 5 minutes</span></span><br><span class="line"><span class="comment">// has passed since the app was put into the background.</span></span><br><span class="line">codePush.sync(<span class="literal">null</span>, &#123; installMode: InstallMode.ON_NEXT_RESUME, minimumBackgroundDuration: <span class="number">60</span> * <span class="number">5</span> &#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// Download the update silently, and install optional updates</span></span><br><span class="line"><span class="comment">// on the next restart, but install mandatory updates on the next resume.</span></span><br><span class="line">codePush.sync(<span class="literal">null</span>, &#123; mandatoryInstallMode: InstallMode.ON_NEXT_RESUME &#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// Changing the title displayed in the</span></span><br><span class="line"><span class="comment">// confirmation dialog of an "active" update</span></span><br><span class="line">codePush.sync(<span class="literal">null</span>, &#123; updateDialog: &#123; title: <span class="string">"An update is available!"</span> &#125; &#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// Displaying an update prompt which includes the</span></span><br><span class="line"><span class="comment">// description associated with the CodePush release</span></span><br><span class="line">codePush.sync(<span class="literal">null</span>, &#123;</span><br><span class="line">   updateDialog: &#123;</span><br><span class="line">    appendReleaseDescription: <span class="literal">true</span>,</span><br><span class="line">    descriptionPrefix: <span class="string">"\n\nChange log:\n"</span>   </span><br><span class="line">   &#125;,</span><br><span class="line">   installMode: InstallMode.IMMEDIATE</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// Silently check for the update, but</span></span><br><span class="line"><span class="comment">// display a custom downloading UI</span></span><br><span class="line"><span class="comment">// via the SyncStatus and DowloadProgress callbacks</span></span><br><span class="line">codePush.sync(syncStatus, <span class="literal">null</span>, downloadProgress);</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">syncStatus</span>(<span class="params">status</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">switch</span> (status) &#123;</span><br><span class="line">        <span class="keyword">case</span> SyncStatus.DOWNLOADING_PACKAGE:</span><br><span class="line">            <span class="comment">// Show "downloading" modal</span></span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">case</span> SyncStatus.INSTALLING_UPDATE:</span><br><span class="line">            <span class="comment">// Hide "downloading" modal</span></span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">downloadProgress</span>(<span class="params">downloadProgress</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (downloadProgress) &#123;</span><br><span class="line">        <span class="comment">// Update "downloading" modal with current download %</span></span><br><span class="line">        <span class="comment">//console.log("Downloading " + downloadProgress.receivedBytes + " of " + downloadProgress);</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<ol>
+<li>如果想让应用尽快的检查更新，则可以监听<strong>resume</strong>事件函数中使用<em>sync</em><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">document</span>.addEventListener(<span class="string">"resume"</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">codePush.sync();</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h3 id="发布更新"><a href="#发布更新" class="headerlink" title="发布更新"></a>发布更新</h3><p>命令:<code>code-push release-cordova &lt;appName&gt; &lt;platform&gt;</code></p>
+<p>示例：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"># Release a mandatory update with a changelog</span><br><span class="line">code-push release-cordova MyApp-ios ios -m --description &quot;Modified the header color&quot;</span><br><span class="line"></span><br><span class="line"># Release a dev Android build to just 1/4 of your end users</span><br><span class="line">code-push release-cordova MyApp-Android android --rollout 25%</span><br><span class="line"></span><br><span class="line"># Release an update that targets users running any 1.1.* binary, as opposed to</span><br><span class="line"># limiting the update to exact version name in the config.xml file</span><br><span class="line">code-push release-cordova MyApp-Android android --targetBinaryVersion &quot;~1.1.0&quot;</span><br><span class="line"></span><br><span class="line"># Release the update now but mark it as disabled</span><br><span class="line"># so that no users can download it yet</span><br><span class="line">code-push release-cordova MyApp-ios ios -x</span><br></pre></td></tr></table></figure></p>
+<p>更多细节请参考：<a href="https://github.com/Microsoft/code-push/tree/master/cli#releasing-updates-cordova" target="_blank" rel="external">CLI Docs</a></p>
+<h3 id="APIs"><a href="#APIs" class="headerlink" title="APIs"></a>APIs</h3><ul>
+<li><a href="https://github.com/Microsoft/cordova-plugin-code-push#codepushcheckforupdate" target="_blank" rel="external">checkForUpdate</a>：请求更新服务器是否存在更新</li>
+<li><a href="https://github.com/Microsoft/cordova-plugin-code-push#codepushgetcurrentpackage" target="_blank" rel="external">getCurrentPackage</a>：获取当前已安装的更新包信息(如安装时间，包大小等)</li>
+<li><a href="https://github.com/Microsoft/cordova-plugin-code-push#codepushgetpendingpackage" target="_blank" rel="external">getPendingPackage</a>：获取已下载和安装，但还未重启后被应用的更新包信息</li>
+<li><a href="https://github.com/Microsoft/cordova-plugin-code-push#codepushnotifyapplicationready" target="_blank" rel="external">notifyApplicationReady</a>：通知CodePush运行时更新已完成</li>
+<li><a href="https://github.com/Microsoft/cordova-plugin-code-push#codepushrestartapplication" target="_blank" rel="external">restartApplication</a>：即时重启应用</li>
+<li><a href="https://github.com/Microsoft/cordova-plugin-code-push#codepushsync" target="_blank" rel="external">sync</a>：重启、下载和安装一键式完成</li>
+</ul>
+<hr>
+<p>详细说明请参考：</p>
+<ul>
+<li><a href="http://microsoft.github.io/code-push/" target="_blank" rel="external">http://microsoft.github.io/code-push</a></li>
+<li><a href="https://github.com/Microsoft/cordova-plugin-code-push" target="_blank" rel="external">https://github.com/Microsoft/cordova-plugin-code-push</a></li>
+</ul>
+
+      
+    </div>
+    
+  </div>
+  
+    
+    <div class="copyright">
+        <p><span>本文标题:</span><a href="/2016/06/06/微软Code-Push服务说明/">微软Code Push服务说明</a></p>
+        <p><span>文章作者:</span><a href="/" title="回到主页">Hustfox</a></p>
+        <p><span>发布时间:</span>2016-06-06, 14:30:55</p>
+        <p><span>最后更新:</span>2016-06-06, 14:48:18</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/2016/06/06/微软Code-Push服务说明/" title="微软Code Push服务说明">http://yoursite.com/2016/06/06/微软Code-Push服务说明/</a>
+            <span class="copy-path" data-clipboard-text="原文: http://yoursite.com/2016/06/06/微软Code-Push服务说明/　　作者: Hustfox" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" title="CC BY-NC-SA 4.0 International" target = "_blank">"署名-非商用-相同方式共享 4.0"</a> 转载请保留原文链接及作者。
+        </p>
+    </div>
+
+
+
+    <nav id="article-nav">
+        
+        
+            <div id="article-nav-older" class="article-nav-title">
+                <a href="/2016/06/03/我的梦想/">
+                    我的梦想
+                </a>
+            </div>
+        
+    </nav>
+
+  
+</article>
+
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#支持平台"><span class="toc-number">1.</span> <span class="toc-text">支持平台</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#入门教程"><span class="toc-number">2.</span> <span class="toc-text">入门教程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#插件用法"><span class="toc-number">3.</span> <span class="toc-text">插件用法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#发布更新"><span class="toc-number">4.</span> <span class="toc-text">发布更新</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#APIs"><span class="toc-number">5.</span> <span class="toc-text">APIs</span></a></li></ol>
+</div>
+<style>
+    .left-col .switch-btn {
+        display: none;
+    }
+    .left-col .switch-area {
+        display: none;
+    }
+</style>
+
+<input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+<script>
+    var valueHide = "隐藏目录";
+    var valueShow = "显示目录";
+
+    if ($(".left-col").is(":hidden")) {
+        $("#tocButton").attr("value", valueShow);
+    }
+
+    $("#tocButton").click(function() {
+        if ($("#toc").is(":hidden")) {
+            $("#tocButton").attr("value", valueHide);
+            $("#toc").slideDown(320);
+            $(".switch-btn, .switch-area").fadeOut(300);
+        }
+        else {
+            $("#tocButton").attr("value", valueShow);
+            $("#toc").slideUp(350);
+            $(".switch-btn, .switch-area").fadeIn(500);
+        }
+    })
+
+    if ($(".toc").length < 1) {
+        $("#toc, #tocButton").hide();
+        $(".switch-btn, .switch-area").show();
+    }
+</script>
+
+
+
+
+
+    
+<div class="share">
+    
+        <div class="bdsharebuttonbox">
+            <a href="#" class="fa fa-twitter bds_twi" data-cmd="twi" title="分享到推特"></a>
+            <a href="#" class="fa fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+            <a href="#" class="fa fa-qq bds_sqq" data-cmd="sqq" title="分享给 QQ 好友"></a>
+            <a href="#" class="fa fa-files-o bds_copy" data-cmd="copy" title="复制网址"></a>
+            <a href="#" class="fa fa fa-envelope-o bds_mail" data-cmd="mail" title="通过邮件分享"></a>
+            <a href="#" class="fa fa-weixin bds_weixin" data-cmd="weixin" title="生成文章二维码"></a>
+            <a href="#" class="fa fa-share-alt bds_more" data-cmd="more"></i></a>
+        </div>
+        <script>
+            window._bd_share_config={
+                "common":{"bdSnsKey":{},"bdText":"微软Code Push服务说明　| 风的呢喃　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+        </script>
+    
+
+    
+</div>
+
+
+
+
+
+
+
+    
+
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
+        
+
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+
+        
+            <a href="/2016/06/03/我的梦想/" title="下一篇: 我的梦想">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2016/06/06/微软Code-Push服务说明/">微软Code Push服务说明</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/06/03/我的梦想/">我的梦想</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/06/03/hello-world/">Hello World</a></li></ul>
+
+
+
+
+    <script>
+        
+    </script>
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                <i class="fa fa-copyright"></i> 
+                2016 Hustfox
+            </div>
+            <div class="footer-right">
+                <a href="http://hexo.io/" target="_blank" title="快速、简洁且高效的博客框架">Hexo</a>  Theme <a href="https://github.com/MOxFIVE/hexo-theme-yelee" target="_blank" title="简而不减 Hexo 双栏博客主题  v3.0">Yelee</a> by MOxFIVE <i class="fa fa-heart animated infinite pulse"></i>
+            </div>
+        </div>
+        
+            <div class="visit">
+                
+                    <span id="busuanzi_container_site_pv" style='display:none'>
+                        <span id="site-visit" >本站到访数: 
+                            <span id="busuanzi_value_site_uv"></span>
+                        </span>
+                    </span>
+                
+                
+                    <span>, </span>
+                
+                
+                    <span id="busuanzi_container_page_pv" style='display:none'>
+                        <span id="page-visit">本页阅读量: 
+                            <span id="busuanzi_value_page_pv"></span>
+                        </span>
+                    </span>
+                
+            </div>
+        
+    </div>
+</footer>
+    </div>
+    
+<script data-main="/js/main.js" src="//cdn.bootcss.com/require.js/2.2.0/require.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            var iPad = window.navigator.userAgent.indexOf('iPad');
+            if (iPad > -1 || $(".left-col").css("display") === "none") {
+                var bgColorList = ["#9db3f4", "#414141", "#e5a859", "#f5dfc6", "#c084a0", "#847e72", "#cd8390", "#996731"];
+                var bgColor = Math.ceil(Math.random() * (bgColorList.length - 1));
+                $("body").css({"background-color": bgColorList[bgColor], "background-size": "cover"});
+            }
+            else {
+                var backgroundnum = 4;
+                var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+                $("body").css({"background": backgroundimg, "background-attachment": "fixed", "background-size": "cover"});
+            }
+        })
+    </script>
+
+
+
+
+<div class="scroll" id="scroll">
+    <a href="#" title="返回顶部"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments" title="查看评论"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer" title="转到底部"><i class="fa fa-arrow-down"></i></a>
+</div>
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+  </div>
+</body>
+</html>
