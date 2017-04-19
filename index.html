@@ -294,14 +294,9 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <p>一般<code>setTitleTextAttributes</code>的场景如下：</p>
+              <p>一般<code>setTitleTextAttributes</code>的场景如下：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">[[UIBarItem appearance] setTitleTextAttributes:</span><br><span class="line">     [NSDictionary dictionaryWithObjectsAndKeys:</span><br><span class="line">      [UIColor colorWithRed:220.0/255.0 green:104.0/255.0 blue:1.0/255.0 alpha:1.0], UITextAttributeTextColor, </span><br><span class="line">      [UIColor colorWithRed:1.0 green:1.0 blue:1.0 alpha:1.0], UITextAttributeTextShadowColor, </span><br><span class="line">      [NSValue valueWithUIOffset:UIOffsetMake(0, 1)], UITextAttributeTextShadowOffset, </span><br><span class="line">      [UIFont fontWithName:@&quot;AmericanTypewriter&quot; size:0.0], UITextAttributeFont, </span><br><span class="line">      nil] </span><br><span class="line">     forState:UIControlStateNormal];</span><br></pre></td></tr></table></figure>
-<p>但是有一个坑：就是设置颜色值的时候，如果颜色值用的是整数而不是浮点数，譬如：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">UIColor *color = [UIColor colorWithRed:240/255 green:8/255 blue:8/255 alpha:1];</span><br><span class="line">[[UITabbarItem appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:color, NSForegroundColorAttributeName, nil] forState:UIControlStateNormal];</span><br></pre></td></tr></table></figure>
-<p>那么设置是无效的，显示出来的颜色值是黑色！！！</p>
-<p>正确的做法应该是：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">UIColor *color = [UIColor colorWithRed:240.0/255 green:8.0/255 blue:8.0/255 alpha:1];</span><br><span class="line">[[UITabbarItem appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:color, NSForegroundColorAttributeName, nil] forState:UIControlStateNormal];</span><br></pre></td></tr></table></figure>
-
+          
       
     </div>
     
@@ -310,6 +305,10 @@
       
 
       
+      
+        <p class="article-more-link">
+          <a href="/2017/04/19/setTitleTextAttributes/#more">more >></a>
+        </p>
       
       <div class="clearfix"></div>
     </div>
@@ -419,7 +418,7 @@
       
       
         <p class="article-more-link">
-          <a href="/2016/06/08/bluetooth-connect-failed/#more">阅读全文 >></a>
+          <a href="/2016/06/08/bluetooth-connect-failed/#more">more >></a>
         </p>
       
       <div class="clearfix"></div>
@@ -477,7 +476,7 @@
       
       
         <p class="article-more-link">
-          <a href="/2016/06/06/微软Code-Push服务说明/#more">阅读全文 >></a>
+          <a href="/2016/06/06/微软Code-Push服务说明/#more">more >></a>
         </p>
       
       <div class="clearfix"></div>
@@ -589,7 +588,7 @@
       
       
         <p class="article-more-link">
-          <a href="/2016/06/03/hello-world/#more">阅读全文 >></a>
+          <a href="/2016/06/03/hello-world/#more">more >></a>
         </p>
       
       <div class="clearfix"></div>

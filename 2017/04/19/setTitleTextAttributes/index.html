@@ -23,7 +23,7 @@
 <meta property="og:site_name" content="风的呢喃">
 <meta property="og:description" content="一般setTitleTextAttributes的场景如下：
 12345678[[UIBarItem appearance] setTitleTextAttributes:     [NSDictionary dictionaryWithObjectsAndKeys:      [UIColor colorWithRed:220.0/255.0 green:104.0/255.0 blue:1.0">
-<meta property="og:updated_time" content="2017-04-19T07:50:26.000Z">
+<meta property="og:updated_time" content="2017-04-19T07:57:07.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="setTitleTextAttributes">
 <meta name="twitter:description" content="一般setTitleTextAttributes的场景如下：
@@ -300,12 +300,12 @@
           
         <p>一般<code>setTitleTextAttributes</code>的场景如下：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">[[UIBarItem appearance] setTitleTextAttributes:</span><br><span class="line">     [NSDictionary dictionaryWithObjectsAndKeys:</span><br><span class="line">      [UIColor colorWithRed:220.0/255.0 green:104.0/255.0 blue:1.0/255.0 alpha:1.0], UITextAttributeTextColor, </span><br><span class="line">      [UIColor colorWithRed:1.0 green:1.0 blue:1.0 alpha:1.0], UITextAttributeTextShadowColor, </span><br><span class="line">      [NSValue valueWithUIOffset:UIOffsetMake(0, 1)], UITextAttributeTextShadowOffset, </span><br><span class="line">      [UIFont fontWithName:@&quot;AmericanTypewriter&quot; size:0.0], UITextAttributeFont, </span><br><span class="line">      nil] </span><br><span class="line">     forState:UIControlStateNormal];</span><br></pre></td></tr></table></figure>
+<a id="more"></a>
 <p>但是有一个坑：就是设置颜色值的时候，如果颜色值用的是整数而不是浮点数，譬如：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">UIColor *color = [UIColor colorWithRed:240/255 green:8/255 blue:8/255 alpha:1];</span><br><span class="line">[[UITabbarItem appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:color, NSForegroundColorAttributeName, nil] forState:UIControlStateNormal];</span><br></pre></td></tr></table></figure>
 <p>那么设置是无效的，显示出来的颜色值是黑色！！！</p>
 <p>正确的做法应该是：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">UIColor *color = [UIColor colorWithRed:240.0/255 green:8.0/255 blue:8.0/255 alpha:1];</span><br><span class="line">[[UITabbarItem appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:color, NSForegroundColorAttributeName, nil] forState:UIControlStateNormal];</span><br></pre></td></tr></table></figure>
-
       
     </div>
     
@@ -316,7 +316,7 @@
         <p><span>本文标题:</span><a href="/2017/04/19/setTitleTextAttributes/">setTitleTextAttributes</a></p>
         <p><span>文章作者:</span><a href="/" title="回到主页">Hustfox</a></p>
         <p><span>发布时间:</span>2017-04-19, 15:43:32</p>
-        <p><span>最后更新:</span>2017-04-19, 15:50:26</p>
+        <p><span>最后更新:</span>2017-04-19, 15:57:07</p>
         <p>
             <span>原始链接:</span><a class="post-url" href="/2017/04/19/setTitleTextAttributes/" title="setTitleTextAttributes">http://yoursite.com/2017/04/19/setTitleTextAttributes/</a>
             <span class="copy-path" data-clipboard-text="原文: http://yoursite.com/2017/04/19/setTitleTextAttributes/　　作者: Hustfox" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
