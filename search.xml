@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  
+    
+    <entry>
+      <title><![CDATA[Git使用简要说明]]></title>
+      <url>%2F2017%2F05%2F11%2FGit%E4%BD%BF%E7%94%A8%E7%AE%80%E8%A6%81%E8%AF%B4%E6%98%8E%2F</url>
+      <content type="text"><![CDATA[git init初始化仓库 git status检查当前文件状态 git add 跟踪新文件 暂存已修改文件 用于合并时把冲突的文件标记为已解决状态 对于已暂存的文件，如果再次修改，那么暂存区和工作区各有一份该文件的拷贝，此时commit的是已暂存的文件 git diff比较工作目录中当前文件和暂存区域快照之间的差异 git diff —cached /git diff — staged比较暂存区文件与上次提交时的快照间的差异 git commit -m提交已暂存的文件 git commit -a -m把所有已跟踪的文件暂存起来一并比较 git commit —amend如果上次提交时忘了暂存某些修改，可以先补上暂存操作，然后再运行 --amend 提交 123$ git commit -m &apos;initial commit&apos;$ git add forgotten_file$ git commit --amend git rm从已跟踪文件清单中移除指定的文件，并连带从工作目录中删除 git rm –cached把文件从跟踪清单中删除，但仍然希望保留在当前工作目录中 git mv移动文件，或者给文件重命名，相当于： 123$ mv README.txt README$ git rm README.txt$ git add README]]></content>
+    </entry>
+
+    
+    <entry>
+      <title><![CDATA[setTitleTextAttributes]]></title>
+      <url>%2F2017%2F04%2F19%2FsetTitleTextAttributes%2F</url>
+      <content type="text"><![CDATA[一般setTitleTextAttributes的场景如下： 12345678[[UIBarItem appearance] setTitleTextAttributes: [NSDictionary dictionaryWithObjectsAndKeys: [UIColor colorWithRed:220.0/255.0 green:104.0/255.0 blue:1.0/255.0 alpha:1.0], UITextAttributeTextColor, [UIColor colorWithRed:1.0 green:1.0 blue:1.0 alpha:1.0], UITextAttributeTextShadowColor, [NSValue valueWithUIOffset:UIOffsetMake(0, 1)], UITextAttributeTextShadowOffset, [UIFont fontWithName:@&quot;AmericanTypewriter&quot; size:0.0], UITextAttributeFont, nil] forState:UIControlStateNormal]; 但是有一个坑：就是设置颜色值的时候，如果颜色值用的是整数而不是浮点数，譬如： 12UIColor *color = [UIColor colorWithRed:240/255 green:8/255 blue:8/255 alpha:1];[[UITabbarItem appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:color, NSForegroundColorAttributeName, nil] forState:UIControlStateNormal]; 那么设置是无效的，显示出来的颜色值是黑色！！！ 正确的做法应该是： 12UIColor *color = [UIColor colorWithRed:240.0/255 green:8.0/255 blue:8.0/255 alpha:1];[[UITabbarItem appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:color, NSForegroundColorAttributeName, nil] forState:UIControlStateNormal];]]></content>
+    </entry>
+
+    
+    <entry>
+      <title><![CDATA[bluetooth connect failed]]></title>
+      <url>%2F2016%2F06%2F08%2Fbluetooth-connect-failed%2F</url>
+      <content type="text"><![CDATA[在使用android蓝牙4.0编写小程序时，经常会在蓝牙连接(socket.connect)时碰到异常：Java.IO.IOException: read failed, socket might closed, read ret: -1. 其原因可能有: 获取socket代码：device.createRfcommSocketToServiceRecord(SERIAL_UUID)的SERIAL_UUID不正确导致的。一般可取的UUID参见：手机蓝牙常见UUIDs 与socket.mPort有关。device.createRfcommSocketToServiceRecord(SERIAL_UUID)创建socket时，mPort值为”-1”，该值在4.2及以上的android版本中无效，因此需要修改它的值。然而createRfcommSocketToServiceRecord只接受一个参数UUID，所以需要另辟蹊径。可以在捕获上述异常的代码块里添加:socket =(BluetoothSocket) device.getClass().getMethod(&quot;createRfcommSocket&quot;, new Class[] {int.class}).invoke(device,1);重新连接。详细请看:IOException: read failed, socket might closed 参考: How to Fix Bluetooth Pairing Problems 蓝牙开发系列]]></content>
+    </entry>
+
+    
+    <entry>
+      <title><![CDATA[微软Code Push服务说明]]></title>
+      <url>%2F2016%2F06%2F06%2F%E5%BE%AE%E8%BD%AFCode-Push%E6%9C%8D%E5%8A%A1%E8%AF%B4%E6%98%8E%2F</url>
+      <content type="text"><![CDATA[CodePush是一种云服务，允许Cordova和React Native开发者直接部署移动应用更新到用户设备上。CodePush的行为类似中央仓库，开发者发布更新(JS、HTML、CSS、图片等资源)到CodePush服务器，应用在启动时利用提供的SDK查询更新。这样在修复Bugs或者添加小功能时就不需要重新构建二进制包以及重新发布到各app store。同时CodePush插件会保存上次更新的一份拷贝，这样当用户更新异常后能自动回滚，从而保证用户不会因更新失败而无法使用应用。 支持平台 Android(cordova-android 4.0.0+) - Including CrossWalk! iOS (cordova-ios 3.9.0+) .如果需要搭配使用[cordova-plugin-wkwebview-engine]，那么需要安装v1.5.1-beta+，该版本同时支持WKWebView和WebView。入门教程 安装CodePush CLInpm install -g code-push-cli 创建CodePush账号运行code-push register创建Github或微软账号。如果已有账号，直接:code-push register登陆账号。登陆账号时网页会提供Access Key,将该Key输入到命令行的指定位置即可。 注册appcode-push app add &lt;appName&gt;。appName可以不与应用名字一致。 安装CodePush插件cordova plugin add cordova-plugin-code-push@latest 添加Deployment Keys在第三步注册app时，注册成功后会提供Production Key和Staging Key。前者用于生产，后者用于测试。如果遗忘了可以使用命令code-push deployment ls &lt;appName&gt; -k获取这些Keys，确保在config.xml文件中添加正确的Key： 123456&lt;platform name=&quot;android&quot;&gt; &lt;preference name=&quot;CodePushDeploymentKey&quot; value=&quot;YOUR-ANDROID-DEPLOYMENT-KEY&quot; /&gt;&lt;/platform&gt;&lt;platform name=&quot;ios&quot;&gt; &lt;preference name=&quot;CodePushDeploymentKey&quot; value=&quot;YOUR-IOS-DEPLOYMENT-KEY&quot; /&gt;&lt;/platform&gt; 如果config.xml中没有使用&lt;access origin=&quot;*&quot; /&gt;，那么需要添加如下 12&lt;access origin=&quot;https://codepush.azurewebsites.net&quot; /&gt;&lt;access origin=&quot;https://codepush.blob.core.windows.net&quot; /&gt; 在遵从CSP的平台上，为确保能够访问CodePush服务器，需要在index.html中添加Content-Security-Policy的meta标签。 1&lt;meta http-equiv=&quot;Content-Security-Policy&quot; content=&quot;default-src https://codepush.azurewebsites.net &apos;self&apos; data: gap: https://ssl.gstatic.com &apos;unsafe-eval&apos;; style-src &apos;self&apos; &apos;unsafe-inline&apos;; media-src *&quot; /&gt; 确保已经安装了cordova-plugin-whitelist插件，否则运行如下命令： 1cordova plugin add cordova-plugin-whitelist 插件用法 在应用的deviceready事件处理函数中田间sync方法。1codePush.sync(syncCallback?, syncOptions?, downloadProgress?); 示例：123456789101112131415161718192021222324252627282930313233343536373839404142434445// Download the update silently, but install it on// the next resume, as long as at least 5 minutes// has passed since the app was put into the background.codePush.sync(null, &#123; installMode: InstallMode.ON_NEXT_RESUME, minimumBackgroundDuration: 60 * 5 &#125;);// Download the update silently, and install optional updates// on the next restart, but install mandatory updates on the next resume.codePush.sync(null, &#123; mandatoryInstallMode: InstallMode.ON_NEXT_RESUME &#125;);// Changing the title displayed in the// confirmation dialog of an "active" updatecodePush.sync(null, &#123; updateDialog: &#123; title: "An update is available!" &#125; &#125;);// Displaying an update prompt which includes the// description associated with the CodePush releasecodePush.sync(null, &#123; updateDialog: &#123; appendReleaseDescription: true, descriptionPrefix: "\n\nChange log:\n" &#125;, installMode: InstallMode.IMMEDIATE&#125;);// Silently check for the update, but// display a custom downloading UI// via the SyncStatus and DowloadProgress callbackscodePush.sync(syncStatus, null, downloadProgress);function syncStatus(status) &#123; switch (status) &#123; case SyncStatus.DOWNLOADING_PACKAGE: // Show "downloading" modal break; case SyncStatus.INSTALLING_UPDATE: // Hide "downloading" modal break; &#125;&#125;function downloadProgress(downloadProgress) &#123; if (downloadProgress) &#123; // Update "downloading" modal with current download % //console.log("Downloading " + downloadProgress.receivedBytes + " of " + downloadProgress); &#125;&#125; 如果想让应用尽快的检查更新，则可以监听resume事件函数中使用sync123document.addEventListener("resume", function () &#123;codePush.sync();&#125;); 发布更新命令:code-push release-cordova &lt;appName&gt; &lt;platform&gt; 示例：12345678910111213# Release a mandatory update with a changelogcode-push release-cordova MyApp-ios ios -m --description &quot;Modified the header color&quot;# Release a dev Android build to just 1/4 of your end userscode-push release-cordova MyApp-Android android --rollout 25%# Release an update that targets users running any 1.1.* binary, as opposed to# limiting the update to exact version name in the config.xml filecode-push release-cordova MyApp-Android android --targetBinaryVersion &quot;~1.1.0&quot;# Release the update now but mark it as disabled# so that no users can download it yetcode-push release-cordova MyApp-ios ios -x 更多细节请参考：CLI Docs APIs checkForUpdate：请求更新服务器是否存在更新 getCurrentPackage：获取当前已安装的更新包信息(如安装时间，包大小等) getPendingPackage：获取已下载和安装，但还未重启后被应用的更新包信息 notifyApplicationReady：通知CodePush运行时更新已完成 restartApplication：即时重启应用 sync：重启、下载和安装一键式完成 详细说明请参考： http://microsoft.github.io/code-push https://github.com/Microsoft/cordova-plugin-code-push]]></content>
+    </entry>
+
+    
+    <entry>
+      <title><![CDATA[我的梦想]]></title>
+      <url>%2F2016%2F06%2F03%2F%E6%88%91%E7%9A%84%E6%A2%A6%E6%83%B3%2F</url>
+      <content type="text"><![CDATA[醒掌天下权，醉卧美人膝！]]></content>
+    </entry>
+
+    
+    <entry>
+      <title><![CDATA[Hello World]]></title>
+      <url>%2F2016%2F06%2F03%2Fhello-world%2F</url>
+      <content type="text"><![CDATA[Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick StartCreate a new post1$ hexo new "My New Post" More info: Writing Run server1$ hexo server More info: Server Generate static files1$ hexo generate More info: Generating Deploy to remote sites1$ hexo deploy More info: Deployment]]></content>
+    </entry>
+
+    
+  
+  
+</search>
